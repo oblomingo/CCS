@@ -4,16 +4,29 @@ using CSS.GPIO.Models;
 
 namespace CSS.GPIO
 {
-    public class GPIOManager : IGPIOManager
+    public class GpioManager : IGpioManager
     {
+        private bool _turnedOn;
         public List<Measure> GetCurrentMeasures()
         {
-            throw new NotImplementedException();
+            //TODO Implement real measures getting
+            List<Measure> measures = new List<Measure>();
+            var rand = new Random();
+
+            Measure measure = new Measure
+            {
+                Temperature = new decimal(rand.NextDouble()) * 10,
+                Humidity = new decimal(rand.NextDouble()) * 100,
+                Time = DateTime.Now
+            };
+            measures.Add(measure);
+
+            return measures;
         }
 
-        public void ToogleRelay(bool turnOn)
+        public void ToggleRelay(bool turnOn)
         {
-            throw new NotImplementedException();
+            _turnedOn = turnOn;
         }
     }
 }

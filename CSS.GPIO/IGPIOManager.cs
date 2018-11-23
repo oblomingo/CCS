@@ -3,9 +3,9 @@ using CSS.GPIO.Models;
 
 namespace CSS.GPIO
 {
-    public interface IGPIOManager
+    public interface IGpioManager
     {
         List<Measure> GetCurrentMeasures();
-        void ToogleRelay(bool turnOn);
+        void ToggleRelay(bool turnOn);
     }
 }

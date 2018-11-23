@@ -1,10 +1,11 @@
+using CSS.GPIO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace CCS.Web
 {
@@ -27,6 +28,10 @@ namespace CCS.Web
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info { Title = "CCS" }); });
+
+            services.AddScoped<IGpioManager, GpioManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +50,15 @@ namespace CCS.Web
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "CCS");
+            });
 
             app.UseMvc(routes =>
             {
