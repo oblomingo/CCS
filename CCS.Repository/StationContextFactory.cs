@@ -23,7 +23,7 @@ namespace CCS.Repository
 		public StationContext CreateDbContext(string[] args)
 		{
 			var optionsBuilder = new DbContextOptionsBuilder<StationContext>();
-			optionsBuilder.UseSqlite("Data Source=station.db");
+			optionsBuilder.UseSqlite("Data Source=/Data/station.db");
 
 			return new StationContext(optionsBuilder.Options);
 		}
