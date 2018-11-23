@@ -1,8 +1,10 @@
+using CCS.Repository.Infrastructure.Contexts;
 using CSS.GPIO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
@@ -31,7 +33,9 @@ namespace CCS.Web
 
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info { Title = "CCS" }); });
 
-            services.AddScoped<IGpioManager, GpioManager>();
+	        services.AddDbContext<StationContext>(options => options.UseSqlite("Data Source=station.db"));
+
+			services.AddScoped<IGpioManager, GpioManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
