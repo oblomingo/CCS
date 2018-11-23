@@ -1,6 +1,6 @@
 {
-  "short_name": "CCS",
-  "name": "CCS",
+  "short_name": "CCS.Web",
+  "name": "CCS.Web",
   "icons": [
     {
       "src": "favicon.ico",
