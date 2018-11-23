@@ -8,7 +8,7 @@ namespace CCS.Repository.Infrastructure.Configurations
 	{
 		public MeasureConfiguration(EntityTypeBuilder<Measure> entityBuilder)
 		{
-			entityBuilder.ToTable("Measures", "station");
+			entityBuilder.ToTable("Measures");
 			entityBuilder.HasKey(x => x.MeasureId);
 
 			entityBuilder.Property(x => x.Location).IsRequired();

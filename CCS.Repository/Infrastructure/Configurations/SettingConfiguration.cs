@@ -8,7 +8,7 @@ namespace CCS.Repository.Infrastructure.Configurations
 	{
 		public SettingConfiguration(EntityTypeBuilder<Setting> entityBuilder)
 		{
-			entityBuilder.ToTable("Settings", "station");
+			entityBuilder.ToTable("Settings");
 			entityBuilder.HasKey(x => x.SettingId);
 
 			entityBuilder.Property(x => x.Mode).IsRequired();

@@ -34,7 +34,7 @@ namespace CCS.Web
 
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info { Title = "CCS" }); });
 
-	        services.AddDbContext<StationContext>(options => options.UseSqlite("Data Source=station.db"));
+	        services.AddDbContext<StationContext>(options => options.UseSqlite("Data Source=../CCS.Repository/station.db"));
 
 	        services.AddScoped<IMeasureRepository, MeasureRepository>();
 	        services.AddScoped<ISettingRepository, SettingRepository>();

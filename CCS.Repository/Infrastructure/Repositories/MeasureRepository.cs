@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using CCS.Repository.Entities;
 using CCS.Repository.Infrastructure.Contexts;
-using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace CCS.Repository.Infrastructure.Repositories
@@ -22,9 +21,10 @@ namespace CCS.Repository.Infrastructure.Repositories
 			return await _stationContext.Measures.Where(x => x.Time > start && x.Time < end).ToListAsync();
 		}
 
-		public async void InsertMeasures(List<Measure> measures)
+		public void InsertMeasure(Measure measure)
 		{
-			await _stationContext.BulkInsertAsync(measures);
+			_stationContext.Measures.Add(measure);
+			_stationContext.SaveChanges();
 		}
 	}
 }

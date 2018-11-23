@@ -8,6 +8,6 @@ namespace CCS.Repository.Infrastructure.Repositories
 	public interface IMeasureRepository
 	{
 		Task<List<Measure>> GetMeasuresByDates(DateTime start, DateTime end);
-		void InsertMeasures(List<Measure> measures);
+		void InsertMeasure(Measure measure);
 	}
 }
