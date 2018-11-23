@@ -7,13 +7,13 @@ namespace CSS.GPIO
     public class GpioManager : IGpioManager
     {
         private bool _turnedOn;
-        public List<Measure> GetCurrentMeasures()
+        public List<GioMeasure> GetCurrentMeasures()
         {
             //TODO Implement real measures getting
-            List<Measure> measures = new List<Measure>();
+            List<GioMeasure> measures = new List<GioMeasure>();
             var rand = new Random();
 
-            Measure measure = new Measure
+            GioMeasure measure = new GioMeasure
             {
                 Temperature = new decimal(rand.NextDouble()) * 10,
                 Humidity = new decimal(rand.NextDouble()) * 100,

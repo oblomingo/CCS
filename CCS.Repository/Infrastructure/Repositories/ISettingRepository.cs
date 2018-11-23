@@ -1,10 +1,11 @@
-﻿using CCS.Repository.Entities;
+﻿using System.Threading.Tasks;
+using CCS.Repository.Entities;
 
 namespace CCS.Repository.Infrastructure.Repositories
 {
 	public interface ISettingRepository
 	{
-		Setting GetCurrentSetting();
-		Setting UpdateCurrentSetting(Setting setting);
+		Task<Setting> GetCurrentSetting();
+		Task<Setting> UpdateCurrentSetting(Setting setting);
 	}
 }

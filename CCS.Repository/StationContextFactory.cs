@@ -10,7 +10,7 @@ namespace CCS.Repository
 	/// <summary>
 	/// Class for migrations with explicitly defined connection string
 	/// In cli run (in this folder):
-	/// dotnet ef  migrations add YourMigrationName --context CCS.Repository.Infrastructure.Contexts.StationContext -o Infrastructure\Migrations
+	///  dotnet ef  migrations add MeasuresAdded --context "CCS.Repository.Infrastructure.Contexts.StationContext" -o "Infrastructure\Migrations"
 	/// dotnet ef database update
 	/// </summary>
 	public class StationContextFactory : IDesignTimeDbContextFactory<StationContext>

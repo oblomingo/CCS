@@ -16,6 +16,6 @@ namespace CCS.Web.Controllers
         }
 
         [HttpGet]
-        public List<Measure> Measures() => _gpioManager.GetCurrentMeasures();
+        public List<GioMeasure> Measures() => _gpioManager.GetCurrentMeasures();
     }
 }

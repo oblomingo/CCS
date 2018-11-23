@@ -5,7 +5,7 @@ namespace CSS.GPIO
 {
     public interface IGpioManager
     {
-        List<Measure> GetCurrentMeasures();
+        List<GioMeasure> GetCurrentMeasures();
         void ToggleRelay(bool turnOn);
     }
 }

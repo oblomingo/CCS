@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CCS.Repository.Entities;
 using CCS.Repository.Infrastructure.Contexts;
 using EFCore.BulkExtensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace CCS.Repository.Infrastructure.Repositories
 {
@@ -15,14 +17,14 @@ namespace CCS.Repository.Infrastructure.Repositories
 			_stationContext = stationContext;
 		}
 
-		public List<Measure> GetMeasuresByDates(DateTime start, DateTime end)
+		public async Task<List<Measure>> GetMeasuresByDates(DateTime start, DateTime end)
 		{
-			return _stationContext.Measures.Where(x => x.Time > start && x.Time < end).ToList();
+			return await _stationContext.Measures.Where(x => x.Time > start && x.Time < end).ToListAsync();
 		}
 
-		public void InsertMeasures(List<Measure> measures)
+		public async void InsertMeasures(List<Measure> measures)
 		{
-			_stationContext.BulkInsert(measures);
+			await _stationContext.BulkInsertAsync(measures);
 		}
 	}
 }

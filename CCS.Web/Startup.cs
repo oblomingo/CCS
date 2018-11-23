@@ -1,4 +1,5 @@
 using CCS.Repository.Infrastructure.Contexts;
+using CCS.Repository.Infrastructure.Repositories;
 using CSS.GPIO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,6 +36,8 @@ namespace CCS.Web
 
 	        services.AddDbContext<StationContext>(options => options.UseSqlite("Data Source=station.db"));
 
+	        services.AddScoped<IMeasureRepository, MeasureRepository>();
+	        services.AddScoped<ISettingRepository, SettingRepository>();
 			services.AddScoped<IGpioManager, GpioManager>();
         }
 

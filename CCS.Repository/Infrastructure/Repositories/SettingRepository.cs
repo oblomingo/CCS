@@ -1,6 +1,7 @@
-﻿using System.Linq;
+﻿using System.Threading.Tasks;
 using CCS.Repository.Entities;
 using CCS.Repository.Infrastructure.Contexts;
+using Microsoft.EntityFrameworkCore;
 
 namespace CCS.Repository.Infrastructure.Repositories
 {
@@ -13,13 +14,18 @@ namespace CCS.Repository.Infrastructure.Repositories
 			_stationContext = stationContext;
 		}
 
-		public Setting GetCurrentSetting()
+		public async Task<Setting> GetCurrentSetting()
 		{
-			var setting = _stationContext.Settings.FirstOrDefault();
-			return setting ?? new Setting();
+			var setting = await _stationContext.Settings.FirstOrDefaultAsync();
+			if (setting == null)
+			{
+				return await Task.FromResult(new Setting());
+			}
+
+			return setting;
 		}
 
-		public Setting UpdateCurrentSetting(Setting setting)
+		public async Task<Setting> UpdateCurrentSetting(Setting setting)
 		{
 			if (setting.SettingId > 0)
 			{
@@ -30,9 +36,9 @@ namespace CCS.Repository.Infrastructure.Repositories
 				_stationContext.Settings.Add(setting);
 			}
 
-			_stationContext.SaveChanges();
+			await _stationContext.SaveChangesAsync();
 
-			return setting;
+			return await Task.FromResult(setting); ;
 		}
 	}
 }

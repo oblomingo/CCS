@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CSS.GPIO.Models
 {
-    public class Measure
+    public class GioMeasure
     {
         public decimal Temperature { get; set; }
         public decimal Humidity { get; set; }
