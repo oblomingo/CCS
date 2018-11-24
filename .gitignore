@@ -260,3 +260,4 @@ paket-files/
 __pycache__/
 *.pyc
 /CCS.Repository/station.db
+/CCS.Repository/Data/station.db

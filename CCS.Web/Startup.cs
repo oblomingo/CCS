@@ -1,5 +1,6 @@
 using CCS.Repository.Infrastructure.Contexts;
 using CCS.Repository.Infrastructure.Repositories;
+using CCS.Web.Services;
 using CSS.GPIO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,13 +34,14 @@ namespace CCS.Web
             });
 
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info { Title = "CCS" }); });
+	        services.AddDbContext<StationContext>(options => options.UseSqlite("Data Source=../CCS.Repository/Data/station.db"));
 
-	        services.AddDbContext<StationContext>(options => options.UseSqlite("Data Source=../CCS.Repository/station.db"));
-
-	        services.AddScoped<IMeasureRepository, MeasureRepository>();
+			services.AddScoped<IMeasureRepository, MeasureRepository>();
 	        services.AddScoped<ISettingRepository, SettingRepository>();
 			services.AddScoped<IGpioManager, GpioManager>();
-        }
+
+	        services.AddHostedService<MeasureHostedService>();
+		}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -58,10 +60,7 @@ namespace CCS.Web
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
-            app.UseSwagger();
-
-            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
-            // specifying the Swagger JSON endpoint.
+			app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "CCS");
@@ -83,6 +82,6 @@ namespace CCS.Web
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
-        }
+		}
     }
 }

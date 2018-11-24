@@ -14,5 +14,8 @@ namespace CCS.Repository.Entities
         public decimal Temperature { get; set; }
         public decimal Humidity { get; set; }
 		public DateTime Time { get; set; }
+
+	    public override string ToString() =>
+		    $"Location: {Location}, Temperature: {Temperature}, Humidity: {Humidity}, Time: {Time.ToShortTimeString()}";
     }
 }
