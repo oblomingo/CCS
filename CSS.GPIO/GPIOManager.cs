@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using CCS.Repository.Enums;
 using CSS.GPIO.Models;
 
@@ -35,6 +36,8 @@ namespace CSS.GPIO
 		public void ToggleRelay(bool turnOn)
 		{
 			_turnedOn = turnOn;
+			var offOrOn = turnOn ? "on" : "off";
+			Debug.WriteLine($"GpioManager Relay is turning {offOrOn}");
 		}
 	}
 }

@@ -3,14 +3,16 @@ using System;
 using CCS.Repository.Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CCS.Repository.Infrastructure.Migrations
 {
     [DbContext(typeof(StationContext))]
-    partial class StationContextModelSnapshot : ModelSnapshot
+    [Migration("20181126061104_SettingChanged")]
+    partial class SettingChanged
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

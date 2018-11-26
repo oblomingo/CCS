@@ -17,5 +17,6 @@ namespace CCS.Repository.Entities
 		public Modes Mode { get; set; }
 		public DateTime ScheduleStar { get; set; }
 		public DateTime ScheduleStop { get; set; }
+		public bool IsOn { get; set; }
 	}
 }

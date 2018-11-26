@@ -11,12 +11,12 @@ using Microsoft.Extensions.Logging;
 
 namespace CCS.Web.Services
 {
-	internal class ConsumeScopedServiceHostedService : IHostedService
+	internal class MeasureHostedService : IHostedService
 	{
 		private readonly ILogger _logger;
 
-		public ConsumeScopedServiceHostedService(IServiceProvider services,
-			ILogger<ConsumeScopedServiceHostedService> logger)
+		public MeasureHostedService(IServiceProvider services,
+			ILogger<MeasureHostedService> logger)
 		{
 			Services = services;
 			_logger = logger;
@@ -26,18 +26,14 @@ namespace CCS.Web.Services
 
 		public Task StartAsync(CancellationToken cancellationToken)
 		{
-			_logger.LogInformation(
-				"Consume Scoped Service Hosted Service is starting.");
-
-			DoWork();
-
+			DoWork(cancellationToken);
 			return Task.CompletedTask;
 		}
 
-		private void DoWork()
+		private void DoWork(CancellationToken cancellationToken)
 		{
 			_logger.LogInformation(
-				"Consume Scoped Service Hosted Service is working.");
+				"Measure hosted service is working...");
 
 			using (var scope = Services.CreateScope())
 			{
@@ -48,7 +44,7 @@ namespace CCS.Web.Services
 					scope.ServiceProvider
 						.GetRequiredService<IMeasureRepository>();
 
-				while (true)
+				while (!cancellationToken.IsCancellationRequested)
 				{
 					try
 					{
@@ -69,7 +65,7 @@ namespace CCS.Web.Services
 					}
 					catch (Exception e)
 					{
-						Console.WriteLine(e);
+						_logger.LogError(e, "Error on writing measure to database");
 					}
 				}
 			}
@@ -77,9 +73,6 @@ namespace CCS.Web.Services
 
 		public Task StopAsync(CancellationToken cancellationToken)
 		{
-			_logger.LogInformation(
-				"Consume Scoped Service Hosted Service is stopping.");
-
 			return Task.CompletedTask;
 		}
 	}
