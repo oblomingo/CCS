@@ -2,6 +2,7 @@ using CCS.Repository.Infrastructure.Contexts;
 using CCS.Repository.Infrastructure.Repositories;
 using CCS.Web.Services;
 using CSS.GPIO;
+using CSS.GPIO.Relays;
 using CSS.GPIO.TemperatureSensors;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -44,12 +45,19 @@ namespace CCS.Web
 
 	        services.AddHostedService<MeasureHostedService>();
 	        services.AddHostedService<ControlHostedService>();
+	        services.AddSingleton<IBackgroundQueue, ControlHostedServiceQueue>();
 
-	        services.AddSingleton<ITemperatureSensor>(sp => new TemperatureSensorForTesting(P1.Gpio22));
+#if DEBUG
+			services.AddSingleton<ITemperatureSensor>(sp => new TemperatureSensorForTesting(P1.Gpio22));
+				services.AddSingleton<IGpioRelay, GpioRelayForTesting>();
+			#else
+				services.AddSingleton<ITemperatureSensor>(sp => new TemperatureSensor(P1.Gpio22));
+				services.AddSingleton<IGpioRelay, GpioRelay>();
+			#endif
 		}
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
