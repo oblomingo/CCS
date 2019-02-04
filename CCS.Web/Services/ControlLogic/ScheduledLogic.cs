@@ -1,21 +1,29 @@
 ﻿using System;
-using System.Diagnostics;
 using CCS.Repository.Entities;
+using CSS.GPIO.Relays;
 
 namespace CCS.Web.Services.ControlLogic
 {
 	public class ScheduledLogic : IControlLogic
+
 	{
 		private readonly Setting _setting;
+		private readonly IGpioRelay _gpioRelay;
 
-		public ScheduledLogic(Setting setting)
+		public ScheduledLogic(Setting setting, IGpioRelay gpioRelay)
 		{
 			_setting = setting;
+			_gpioRelay = gpioRelay;
 		}
-		public bool ShouldBeOn()
+
+		public void Apply()
 		{
-			Debug.WriteLine("Applying scheduled mode logic ...");
-			return false;
+			throw new NotImplementedException();
+		}
+
+		public void Decline()
+		{
+			throw new NotImplementedException();
 		}
 	}
 }
