@@ -47,8 +47,8 @@ namespace CCS.Web
 	        services.AddHostedService<ControlHostedService>();
 	        services.AddSingleton<IBackgroundQueue, ControlHostedServiceQueue>();
 
-#if DEBUG
-			services.AddSingleton<ITemperatureSensor>(sp => new TemperatureSensorForTesting(P1.Gpio22));
+			#if DEBUG
+				services.AddSingleton<ITemperatureSensor>(sp => new TemperatureSensorForTesting(P1.Gpio22));
 				services.AddSingleton<IGpioRelay, GpioRelayForTesting>();
 			#else
 				services.AddSingleton<ITemperatureSensor>(sp => new TemperatureSensor(P1.Gpio22));
