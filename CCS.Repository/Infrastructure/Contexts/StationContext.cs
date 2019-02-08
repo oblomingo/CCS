@@ -1,4 +1,5 @@
 ﻿using CCS.Repository.Entities;
+using CCS.Repository.Enums;
 using CCS.Repository.Infrastructure.Configurations;
 using Microsoft.EntityFrameworkCore;
 

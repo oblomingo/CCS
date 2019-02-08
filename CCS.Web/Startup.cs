@@ -37,7 +37,7 @@ namespace CCS.Web
             });
 
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info { Title = "CCS" }); });
-	        services.AddDbContext<StationContext>(options => options.UseSqlite("Data Source=../CCS.Repository/station.db"));
+	        services.AddDbContext<StationContext>(options => options.UseSqlite("Data Source=station.db"));
 
 			services.AddScoped<IMeasureRepository, MeasureRepository>();
 	        services.AddScoped<ISettingRepository, SettingRepository>();
@@ -59,7 +59,11 @@ namespace CCS.Web
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
+	        app.UseStaticFiles();
+
+			InitializeDatabase(app);
+
+			if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -96,5 +100,13 @@ namespace CCS.Web
                 }
             });
 		}
-    }
+
+	    private void InitializeDatabase(IApplicationBuilder app)
+	    {
+		    using (var scope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+		    {
+			    scope.ServiceProvider.GetRequiredService<StationContext>().Database.Migrate();
+		    }
+	    }
+	}
 }
