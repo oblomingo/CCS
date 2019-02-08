@@ -8,25 +8,20 @@ export default props => (
   <Navbar inverse fixedTop fluid collapseOnSelect>
     <Navbar.Header>
       <Navbar.Brand>
-        <Link to={'/'}>CCS.Web</Link>
+        <Link to={'/'}>Climate Control Station</Link>
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>
     <Navbar.Collapse>
       <Nav>
-        <LinkContainer to={'/'} exact>
+        <LinkContainer to={'/dashboard'}>
           <NavItem>
-            <Glyphicon glyph='home' /> Home
+            <Glyphicon glyph='home' /> Dashboard
           </NavItem>
         </LinkContainer>
-        <LinkContainer to={'/counter'}>
+        <LinkContainer to={'/measures'}>
           <NavItem>
-            <Glyphicon glyph='education' /> Counter
-          </NavItem>
-        </LinkContainer>
-        <LinkContainer to={'/fetchdata'}>
-          <NavItem>
-            <Glyphicon glyph='th-list' /> Fetch data
+            <Glyphicon glyph='th-list' /> Measures
           </NavItem>
         </LinkContainer>
       </Nav>

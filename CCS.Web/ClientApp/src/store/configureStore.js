@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import { routerReducer, routerMiddleware } from 'react-router-redux';
 import * as Counter from './Counter';
 import * as WeatherForecasts from './WeatherForecasts';
+import { dashboardDataFetchDataSuccess, dashboardDataHasErrored, dashboardDataIsLoading } from './DashboardData';
 
 export default function configureStore(history, initialState) {
   const reducers = {
@@ -24,6 +25,9 @@ export default function configureStore(history, initialState) {
 
   const rootReducer = combineReducers({
     ...reducers,
+    dashboardDataFetchDataSuccess,
+    dashboardDataHasErrored,
+    dashboardDataIsLoading,
     routing: routerReducer
   });
 
