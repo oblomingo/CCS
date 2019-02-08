@@ -16,7 +16,7 @@ WORKDIR /source/CCS.Web
 RUN dotnet restore
 
 WORKDIR /source/CCS.Web
-RUN dotnet publish "./CCS.Web.csproj" --output "../dist" --configuration Debug
+RUN dotnet publish "./CCS.Web.csproj" --output "../dist" --configuration Release
 
 FROM microsoft/dotnet:2.1-aspnetcore-runtime-stretch-slim-arm32v7 as runtime
 WORKDIR /source
