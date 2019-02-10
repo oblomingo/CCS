@@ -1,3 +1,5 @@
+import {dashboardDataFetchData} from './dashboardData';
+
 export function settingsIsLoading(bool) {
     return {
         type: 'SETTINGS_IS_LOADING',
@@ -73,7 +75,10 @@ export function postSettings(url, settings) {
                 return response;
             })
             .then((response) => response.json())
-            .then((settings) => dispatch(settingsChanged(settings)))
+            .then((settings) => {
+				dispatch(settingsChanged(settings))
+				setTimeout(() => dispatch(dashboardDataFetchData('/api/Dashboard')), 3000);
+			})
             .catch(() => dispatch(settingsHasErrored(true)));
     };
 }

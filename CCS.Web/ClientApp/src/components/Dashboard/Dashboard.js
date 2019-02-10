@@ -80,7 +80,7 @@ class Dashboard extends Component {
         </Typography>
         <Typography variant="body1" gutterBottom>
           <div className="Dashboard">
-            <div>Sensors & Relays</div>
+            <div>Sensors &amp; Relays</div>
             <div>Temperature:{this.props.dashboardData.temperature}</div>
             <div>Humidity:{this.props.dashboardData.humidity}</div>
             <div>Is Relay On:{String(this.props.dashboardData.isOn)}</div>

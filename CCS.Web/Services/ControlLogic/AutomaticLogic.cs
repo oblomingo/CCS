@@ -24,6 +24,10 @@ namespace CCS.Web.Services.ControlLogic
 		{
 			_subscription?.Dispose();
 
+			//Apply logic instantly
+			Sensor_OnMeasure(new SensorDataReadEventArgs(_temperatureSensor.CurrentMeasure.Temperature, _temperatureSensor.CurrentMeasure.Humidity));
+
+			//Apply logic periodically 
 			_subscription = Observable
 				.FromEventPattern<SensorDataReadEventArgs>(_temperatureSensor, "OnMeasure")
 				.Sample(TimeSpan.FromMinutes(1))
