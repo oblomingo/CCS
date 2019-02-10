@@ -27,9 +27,10 @@ namespace CCS.Repository.Infrastructure.Repositories
 
 		public async Task<Setting> UpdateCurrentSetting(Setting setting)
 		{
-			if (setting.SettingId > 0)
+			var currentSetting = await _stationContext.Settings.FirstOrDefaultAsync();
+			if (currentSetting != null)
 			{
-				_stationContext.Update(setting);
+				currentSetting.Update(setting);
 			}
 			else
 			{

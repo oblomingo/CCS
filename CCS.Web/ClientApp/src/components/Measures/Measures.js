@@ -1,19 +1,27 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import MeasuresChart from '../MeasureChart/MeasuresChart';
+import {withStyles} from '@material-ui/core/styles';
+
+const styles = {
+  root: {
+    width: '100%',
+    maxWidth: 800,
+    marginTop: 84,
+    marginLeft: 40
+  }
+};
 
 class Measures extends Component {
-  constructor(props){
-    super(props);
-  }
-  render(){
+
+  render() {
+    const {classes} = this.props;
     return (
-      <div className="Measures">
-        Measures
+      <div className={classes.root}>
+        <MeasuresChart></MeasuresChart>
       </div>
     )
   }
 }
-Measures.propTypes = {
-}
+Measures.propTypes = {}
 
-export default Measures;
+export default withStyles(styles)(Measures);

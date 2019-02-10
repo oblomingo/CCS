@@ -18,5 +18,20 @@ namespace CCS.Repository.Entities
 		public DateTime ScheduleStar { get; set; }
 		public DateTime ScheduleStop { get; set; }
 		public bool IsOn { get; set; }
+
+		public void Update(Setting setting)
+		{
+			InnerTemperatureMin = setting.InnerTemperatureMin;
+			InnerTemperatureMax = setting.InnerTemperatureMax;
+			OuterTemperatureMin = setting.OuterTemperatureMin;
+			OuterTemperatureMax = setting.OuterTemperatureMax;
+
+			Mode = setting.Mode;
+
+			ScheduleStar = setting.ScheduleStar;
+			ScheduleStop = setting.ScheduleStop;
+
+			IsOn = setting.IsOn;
+		}
 	}
 }

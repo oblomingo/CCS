@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CCS.Web.Controllers
 {
+	[Route("api/[controller]")]
 	public class SettingsController : Controller
 	{
 		private readonly ISettingRepository _settingRepository;
@@ -18,11 +19,11 @@ namespace CCS.Web.Controllers
 
 		public IBackgroundQueue Queue { get; }
 
-		[HttpGet, Route("CurrentSetting")]
+		[HttpGet]
 		public async Task<Setting> GetSetting() => await _settingRepository.GetCurrentSetting();
 
-		[HttpPost, Route("CurrentSetting")]
-		public async Task<Setting> UpdateSetting(Setting setting)
+		[HttpPost]
+		public async Task<Setting> UpdateSetting([FromBody] Setting setting)
 		{
 			await _settingRepository.UpdateCurrentSetting(setting);
 			Queue.QueueBackgroundWorkItem(setting);
