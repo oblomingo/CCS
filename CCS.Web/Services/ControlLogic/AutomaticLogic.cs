@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reactive.Linq;
 using CCS.Repository.Entities;
+using CCS.Web.Settings;
 using CSS.GPIO.Relays;
 using CSS.GPIO.TemperatureSensors;
 
@@ -11,13 +12,15 @@ namespace CCS.Web.Services.ControlLogic
 		private readonly Setting _setting;
 		private readonly IGpioRelay _gpioRelay;
 		private readonly ITemperatureSensor _temperatureSensor;
+		private readonly GpioSettings _gpioSettings;
 		private IDisposable _subscription;
 
-		public AutomaticLogic(Setting setting, IGpioRelay gpioRelay, ITemperatureSensor temperatureSensor)
+		public AutomaticLogic(Setting setting, IGpioRelay gpioRelay, ITemperatureSensor temperatureSensor, GpioSettings gpioSettings)
 		{
 			_setting = setting;
 			_gpioRelay = gpioRelay;
 			_temperatureSensor = temperatureSensor;
+			_gpioSettings = gpioSettings;
 		}
 
 		public void Apply()
@@ -30,7 +33,7 @@ namespace CCS.Web.Services.ControlLogic
 			//Apply logic periodically 
 			_subscription = Observable
 				.FromEventPattern<SensorDataReadEventArgs>(_temperatureSensor, "OnMeasure")
-				.Sample(TimeSpan.FromMinutes(1))
+				.Sample(TimeSpan.FromSeconds(_gpioSettings.ControlCheckIntervalInSeconds))
 				.Subscribe(x => Sensor_OnMeasure(x.EventArgs));
 		}
 

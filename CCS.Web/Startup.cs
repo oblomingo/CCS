@@ -1,6 +1,8 @@
 using CCS.Repository.Infrastructure.Contexts;
 using CCS.Repository.Infrastructure.Repositories;
+using CCS.Web.Extensions;
 using CCS.Web.Services;
+using CCS.Web.Settings;
 using CSS.GPIO;
 using CSS.GPIO.Relays;
 using CSS.GPIO.TemperatureSensors;
@@ -36,7 +38,9 @@ namespace CCS.Web
                 configuration.RootPath = "ClientApp/build";
             });
 
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info { Title = "CCS" }); });
+	        services.ConfigurePoco<GpioSettings>(Configuration.GetSection("GpioSettings"));
+
+			services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info { Title = "CCS" }); });
 	        services.AddDbContext<StationContext>(options => options.UseSqlite("Data Source=station.db"));
 
 			services.AddScoped<IMeasureRepository, MeasureRepository>();

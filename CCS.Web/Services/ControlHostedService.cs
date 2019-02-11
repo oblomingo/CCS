@@ -5,6 +5,7 @@ using CCS.Repository.Entities;
 using CCS.Repository.Enums;
 using CCS.Repository.Infrastructure.Repositories;
 using CCS.Web.Services.ControlLogic;
+using CCS.Web.Settings;
 using CSS.GPIO.Relays;
 using CSS.GPIO.TemperatureSensors;
 using Microsoft.Extensions.DependencyInjection;
@@ -41,6 +42,7 @@ namespace CCS.Web.Services
 
 				var gpioRelay = scope.ServiceProvider.GetRequiredService<IGpioRelay>();
 				var sensor = scope.ServiceProvider.GetRequiredService<ITemperatureSensor>();
+				var gpioSettings = scope.ServiceProvider.GetRequiredService<GpioSettings>();
 
 				_controlLogic?.Decline();
 
@@ -50,7 +52,7 @@ namespace CCS.Web.Services
 						_controlLogic = new ManualLogic(setting, gpioRelay);
 						break;
 					case Modes.Automatic:
-						_controlLogic = new AutomaticLogic(setting, gpioRelay, sensor);
+						_controlLogic = new AutomaticLogic(setting, gpioRelay, sensor, gpioSettings);
 						break;
 					case Modes.Schedule:
 						_controlLogic = new ScheduledLogic(setting, gpioRelay);

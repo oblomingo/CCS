@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CCS.Repository.Entities;
 using CCS.Repository.Enums;
 using CCS.Repository.Infrastructure.Repositories;
+using CCS.Web.Settings;
 using CSS.GPIO.TemperatureSensors;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -42,9 +43,11 @@ namespace CCS.Web.Services
 					scope.ServiceProvider
 						.GetRequiredService<ITemperatureSensor>();
 
+				var gpioSettings = scope.ServiceProvider.GetRequiredService<GpioSettings>();
+
 				_subscription = Observable
 					.FromEventPattern<SensorDataReadEventArgs>(sensor, "OnMeasure")
-					.Sample(TimeSpan.FromMinutes(1))
+					.Sample(TimeSpan.FromSeconds(gpioSettings.MeasureIntervalInSeconds))
 					.Subscribe(x => Sensor_OnMeasure(x.EventArgs));
 
 				sensor.Start();
