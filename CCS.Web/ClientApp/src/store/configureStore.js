@@ -5,6 +5,7 @@ import * as Counter from './Counter';
 import * as WeatherForecasts from './WeatherForecasts';
 import { dashboardDataFetchDataSuccess, dashboardDataHasErrored, dashboardDataIsLoading } from './DashboardData';
 import { settingsIsLoading, settingsHasErrored, settingsIsSaving, settingsChanged } from './Settings';
+import { chartDataIsLoading, chartDataHasErrored, chartDataFetchDataSuccess } from './ChartData';
 
 export default function configureStore(history, initialState) {
   const reducers = {
@@ -33,6 +34,9 @@ export default function configureStore(history, initialState) {
     settingsHasErrored,
     settingsIsSaving,
     settingsChanged,
+    chartDataIsLoading,
+    chartDataHasErrored,
+    chartDataFetchDataSuccess,
     routing: routerReducer
   });
 
