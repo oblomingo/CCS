@@ -6,6 +6,7 @@ using CCS.Repository.Entities;
 using CCS.Repository.Enums;
 using CCS.Repository.Infrastructure.Repositories;
 using CCS.Web.Settings;
+using CSS.GPIO.Relays;
 using CSS.GPIO.TemperatureSensors;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -58,9 +59,8 @@ namespace CCS.Web.Services
 		{
 			using (var scope = Services.CreateScope())
 			{
-				var measureRepository =
-					scope.ServiceProvider
-						.GetRequiredService<IMeasureRepository>();
+				var measureRepository = scope.ServiceProvider.GetRequiredService<IMeasureRepository>();
+				var gpioRelay = scope.ServiceProvider.GetRequiredService<IGpioRelay>();
 
 				try
 				{
@@ -69,6 +69,7 @@ namespace CCS.Web.Services
 						Location = Locations.Inside,
 						Temperature = e.TemperatureCelsius,
 						Humidity = e.HumidityPercentage,
+						IsOn = gpioRelay.IsOn,
 						Time = DateTime.Now
 					};
 

@@ -13,6 +13,7 @@ namespace CCS.Repository.Entities
         public Locations Location { get; set; }
         public decimal Temperature { get; set; }
         public decimal Humidity { get; set; }
+		public bool IsOn { get; set; }
 		public DateTime Time { get; set; }
 
 	    public override string ToString() =>
