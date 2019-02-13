@@ -45,7 +45,6 @@ namespace CCS.Web
 
 			services.AddScoped<IMeasureRepository, MeasureRepository>();
 	        services.AddScoped<ISettingRepository, SettingRepository>();
-			services.AddScoped<IGpioManager, GpioManager>();
 
 	        services.AddHostedService<MeasureHostedService>();
 	        services.AddHostedService<ControlHostedService>();

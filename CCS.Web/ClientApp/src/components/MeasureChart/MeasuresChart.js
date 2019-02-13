@@ -13,17 +13,6 @@ import CartesianGrid from 'recharts/lib/cartesian/CartesianGrid';
 import Tooltip from 'recharts/lib/component/Tooltip';
 import Legend from 'recharts/lib/component/Legend';
 
-
-// const data = [
-// 	{time: '10:30', temperature: 2, humidity: 23, isOn: 1},
-// 	{time: '11:00', temperature: 3, humidity: 24, isOn: 1},
-// 	{time: '11:30', temperature: 3, humidity: 25, isOn: 0},
-// 	{time: '12:00', temperature: 4, humidity: 30, isOn: 1},
-// 	{time: '12:30', temperature: 3, humidity: 25, isOn: 0},
-// 	{time: '13:00', temperature: 2, humidity: 25, isOn: 1},
-// 	{time: '13:30', temperature: 4, humidity: 26, isOn: 0},
-// ];
-
 class MeasuresChart extends Component {
   
 	componentDidMount() {

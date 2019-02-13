@@ -29,7 +29,7 @@ namespace CCS.Web.Controllers
 			{
 				MeasuresChartData data = new MeasuresChartData
 				{
-					Time = measure.Time.ToString("dd hh:mm"),
+					Time = measure.Time.ToString("dd HH:mm"),
 					Temperature = measure.Temperature,
 					Humidity = measure.Humidity,
 					IsOn = measure.IsOn ? 1 : 0
