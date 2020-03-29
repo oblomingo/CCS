@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using CCS.Repository.Enums;
+﻿using System.Threading.Tasks;
 using CCS.Repository.Infrastructure.Repositories;
 using CCS.Web.Models;
-using CSS.GPIO;
-using CSS.GPIO.Models;
 using CSS.GPIO.Relays;
 using CSS.GPIO.TemperatureSensors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CCS.Web.Controllers
 {
-    [Route("api/[controller]")]
+	[Route("api/[controller]")]
     public class DashboardController : Controller
     {
         private readonly IGpioRelay _gpioRelay;
