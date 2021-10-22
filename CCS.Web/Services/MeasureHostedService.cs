@@ -57,6 +57,7 @@ namespace CCS.Web.Services
 
 		private void Sensor_OnMeasure(SensorDataReadEventArgs e)
 		{
+			Console.WriteLine($"Measure sensor. Temperature: {e.TemperatureCelsius} C, humidity: {e.HumidityPercentage} %");
 			using (var scope = Services.CreateScope())
 			{
 				var measureRepository = scope.ServiceProvider.GetRequiredService<IMeasureRepository>();

@@ -23,6 +23,7 @@ namespace CSS.GPIO.TemperatureSensors
 
 		private void TemperatureSensor_OnDataAvailable(object sender, TemperatureSensorAM2302.AM2302DataReadEventArgs e)
 		{
+			Console.WriteLine($"Temperature sensor data. Temperature: {e.TemperatureCelsius} C, Humidity: {e.HumidityPercentage} %");
 			_currentMeasure = new GioMeasure
 			{
 				Temperature = e.TemperatureCelsius,
