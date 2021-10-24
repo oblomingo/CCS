@@ -1,13 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2026
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCS.Web", "CCS.Web\CCS.Web.csproj", "{12CDEBE9-8C56-4F56-B0D5-A6C26A455096}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CCS.Web", "CCS.Web\CCS.Web.csproj", "{12CDEBE9-8C56-4F56-B0D5-A6C26A455096}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCS.Repository", "CCS.Repository\CCS.Repository.csproj", "{B3DBD3C5-E213-4AE3-8F41-00EEFF1CF94B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CCS.Repository", "CCS.Repository\CCS.Repository.csproj", "{B3DBD3C5-E213-4AE3-8F41-00EEFF1CF94B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSS.GPIO", "CSS.GPIO\CSS.GPIO.csproj", "{D12343D1-4631-4D26-8341-DB7439CD1DCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSS.GPIO", "CSS.GPIO\CSS.GPIO.csproj", "{D12343D1-4631-4D26-8341-DB7439CD1DCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCS.WebApp", "CCS.WebApp\CCS.WebApp.csproj", "{76ED4D91-107E-43CB-A039-818FAE27429F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test2", "Test2\Test2.csproj", "{3860E22B-761D-4AA3-BAA5-4F6856B5D197}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{D12343D1-4631-4D26-8341-DB7439CD1DCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D12343D1-4631-4D26-8341-DB7439CD1DCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D12343D1-4631-4D26-8341-DB7439CD1DCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76ED4D91-107E-43CB-A039-818FAE27429F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76ED4D91-107E-43CB-A039-818FAE27429F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76ED4D91-107E-43CB-A039-818FAE27429F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76ED4D91-107E-43CB-A039-818FAE27429F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3860E22B-761D-4AA3-BAA5-4F6856B5D197}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3860E22B-761D-4AA3-BAA5-4F6856B5D197}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3860E22B-761D-4AA3-BAA5-4F6856B5D197}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3860E22B-761D-4AA3-BAA5-4F6856B5D197}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

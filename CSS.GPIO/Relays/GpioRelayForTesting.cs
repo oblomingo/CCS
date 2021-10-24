@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 namespace CSS.GPIO.Relays
 {
-	public class GpioRelayForTesting : IGpioRelay
+    public class GpioRelayForTesting : IGpioRelay
 	{
 		private readonly ILogger _logger;
 

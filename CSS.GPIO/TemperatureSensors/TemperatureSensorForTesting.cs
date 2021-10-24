@@ -2,7 +2,7 @@
 using System.Threading;
 using CCS.Repository.Enums;
 using CSS.GPIO.Models;
-using Unosquare.RaspberryIO.Gpio;
+using Unosquare.RaspberryIO.Abstractions;
 
 namespace CSS.GPIO.TemperatureSensors
 {
@@ -48,8 +48,8 @@ namespace CSS.GPIO.TemperatureSensors
 					Thread.Sleep(ReadInterval);
 					var sensorData =
 						new SensorDataReadEventArgs(
-							temperatureCelsius: new decimal(_random.NextDouble()) * 10,
-							humidityPercentage: new decimal(_random.NextDouble()) * 100);
+							temperatureCelsius: _random.NextDouble() * 10,
+							humidityPercentage: _random.NextDouble() * 100);
 
 					_currentMeasure = new GioMeasure
 					{
@@ -61,8 +61,9 @@ namespace CSS.GPIO.TemperatureSensors
 
 					OnMeasure?.Invoke(this, sensorData);
 				}
-				catch
+				catch (Exception ex)
 				{
+					Console.WriteLine($"Error on publish event OnMeasure: {ex.ToString()}");
 					// swallow
 				}
 			}

@@ -11,8 +11,8 @@ namespace CCS.Repository.Entities
 	    [Key]
 		public int MeasureId { get; set; }
         public Locations Location { get; set; }
-        public decimal Temperature { get; set; }
-        public decimal Humidity { get; set; }
+        public double Temperature { get; set; }
+        public double Humidity { get; set; }
 		public bool IsOn { get; set; }
 		public DateTime Time { get; set; }
 

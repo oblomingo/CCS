@@ -1,0 +1,33 @@
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #E01A76;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.root: {
+    width: '100%'; 
+    max-width: 500; 
+    margin-top: 84; 
+    margin-left: 40;
+}
+
+
+.formControl: {
+    margin: theme.spacing.unit; 
+    min-width: 150;
+    margin-left: -2;
+}
+
+
+.selectEmpty: {
+    margin-top: theme.spacing.unit * 2;
+}

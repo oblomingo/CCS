@@ -2,12 +2,12 @@
 {
 	public class SensorDataReadEventArgs
 	{
-		public SensorDataReadEventArgs(decimal temperatureCelsius, decimal humidityPercentage)
+		public SensorDataReadEventArgs(double temperatureCelsius, double humidityPercentage)
 		{
 			TemperatureCelsius = temperatureCelsius;
 			HumidityPercentage = humidityPercentage;
 		}
-		public decimal TemperatureCelsius { get; }
-		public decimal HumidityPercentage { get; }
+		public double TemperatureCelsius { get; }
+		public double HumidityPercentage { get; }
 	}
 }

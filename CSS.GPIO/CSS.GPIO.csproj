@@ -1,21 +1,21 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\CCS.Repository\CCS.Repository.csproj" />
-  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="TemperatureSensors\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Reactive.Core" Version="4.1.2" />
-    <PackageReference Include="Unosquare.Raspberry.IO" Version="0.17.2" />
-    <PackageReference Include="Unosquare.RaspberryIO.Peripherals" Version="0.2.3" />
+    <PackageReference Include="System.Reactive.Core" Version="5.0.0" />
+    <PackageReference Include="Unosquare.Raspberry.IO" Version="0.27.1" />
+    <PackageReference Include="Unosquare.RaspberryIO.Peripherals" Version="0.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CCS.Repository\CCS.Repository.csproj" />
   </ItemGroup>
 
 </Project>

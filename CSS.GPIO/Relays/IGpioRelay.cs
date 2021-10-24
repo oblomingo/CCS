@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CSS.GPIO.Relays
+﻿namespace CSS.GPIO.Relays
 {
-	public interface IGpioRelay
+    public interface IGpioRelay
 	{
 		bool IsOn { get; }
 		void TurnOn();

@@ -1,11 +1,10 @@
-﻿using System;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Unosquare.RaspberryIO;
-using Unosquare.RaspberryIO.Gpio;
+using Unosquare.RaspberryIO.Abstractions;
 
 namespace CSS.GPIO.Relays
 {
-	public class GpioRelay : IGpioRelay
+    public class GpioRelay : IGpioRelay
 	{
 		private readonly ILogger _logger;
 		private bool _isOn;
@@ -13,8 +12,8 @@ namespace CSS.GPIO.Relays
 		{
 			_logger = logger;
 
-			Pi.Gpio.Pin26.PinMode = GpioPinDriveMode.Input;
-			_isOn = Pi.Gpio.Pin26.Read();
+			Pi.Gpio[26].PinMode = GpioPinDriveMode.Input;
+			_isOn = Pi.Gpio[26].Read();
 		}
 
 		public bool IsOn => _isOn;
@@ -26,8 +25,8 @@ namespace CSS.GPIO.Relays
 				return;
 			}
 
-			Pi.Gpio.Pin26.PinMode = GpioPinDriveMode.Output;
-			Pi.Gpio.Pin26.Write(GpioPinValue.High);
+			Pi.Gpio[26].PinMode = GpioPinDriveMode.Output;
+			Pi.Gpio[26].Write(GpioPinValue.High);
 			_isOn = true;
 			_logger.LogInformation($"GpioRelay turned on");
 		}
@@ -36,8 +35,8 @@ namespace CSS.GPIO.Relays
 		{
 			if (IsOn)
 			{
-				Pi.Gpio.Pin26.PinMode = GpioPinDriveMode.Output;
-				Pi.Gpio.Pin26.Write(GpioPinValue.Low);
+				Pi.Gpio[26].PinMode = GpioPinDriveMode.Output;
+				Pi.Gpio[26].Write(GpioPinValue.Low);
 				_isOn = false;
 				_logger.LogInformation($"GpioRelay turned off");
 			}

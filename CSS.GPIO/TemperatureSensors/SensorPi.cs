@@ -1,4 +1,4 @@
-﻿using Unosquare.RaspberryIO.Gpio;
+﻿using Unosquare.RaspberryIO.Abstractions;
 
 namespace CSS.GPIO.TemperatureSensors
 {
@@ -9,7 +9,7 @@ namespace CSS.GPIO.TemperatureSensors
 
 		}
 
-		public static GpioController Gpio => null;
+		public static IGpioController Gpio => null;
 
 		public static P1 Pin { get; set; }
 	}
