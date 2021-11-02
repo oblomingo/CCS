@@ -16,6 +16,7 @@ using Microsoft.Extensions.Hosting;
 using System.Threading.Channels;
 using Unosquare.RaspberryIO.Abstractions;
 using Microsoft.OpenApi.Models;
+using Unosquare.RaspberryIO;
 
 namespace CCS.WebApp
 {
@@ -46,14 +47,13 @@ namespace CCS.WebApp
             services.AddHostedService<ControlHostedService>();
             services.AddSingleton(x => Channel.CreateUnbounded<Setting>());
 
-
-            #if DEBUG
-                services.AddSingleton<ITemperatureSensor>(sp => new TemperatureSensorForTesting(P1.Pin22));
-                services.AddSingleton<IGpioRelay, GpioRelayForTesting>();
-            #else
-                services.AddSingleton<ITemperatureSensor>(sp => new TemperatureSensor(P1.Gpio22));
-                services.AddSingleton<IGpioRelay, GpioRelay>();
-            #endif
+#if DEBUG
+            services.AddSingleton<ITemperatureSensor>(sp => new TemperatureSensorForTesting(P1.Pin22));
+            services.AddSingleton<IGpioRelay, GpioRelayForTesting>();
+#else
+            services.AddSingleton<ITemperatureSensor>(sp => new TemperatureSensor(Pi.Gpio[22]));
+            services.AddSingleton<IGpioRelay, GpioRelay>();
+#endif
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

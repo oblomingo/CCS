@@ -1,7 +1,7 @@
-﻿FROM microsoft/dotnet:2.1-sdk AS builder
+﻿FROM mcr.microsoft.com/dotnet/sdk:5.0 AS builder
 WORKDIR /source
 
-RUN curl -sL https://deb.nodesource.com/setup_10.x |  bash -
+RUN curl -sL https://deb.nodesource.com/setup_14.x |  bash -
 RUN apt-get install -y nodejs
 
 COPY . /source
@@ -12,15 +12,14 @@ RUN dotnet restore
 WORKDIR /source/CSS.GPIO
 RUN dotnet restore
 
-WORKDIR /source/CCS.Web
+WORKDIR /source/CCS.WebApp
 RUN dotnet restore
 
-WORKDIR /source/CCS.Web
-RUN dotnet publish "./CCS.Web.csproj" --output "../dist" --configuration Debug
+WORKDIR /source/CCS.WebApp
+RUN dotnet publish "./CCS.WebApp.csproj" --output "../dist" --configuration Debug --self-contained false --no-restore
 
-FROM microsoft/dotnet:2.2-aspnetcore-runtime
-#FROM microsoft/dotnet:2.1-aspnetcore-runtime-stretch-slim-arm32v7 as runtime
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 as runtime
 WORKDIR /source
 COPY --from=builder /source/dist .
 EXPOSE 80
-ENTRYPOINT ["dotnet", "CCS.Web.dll"]
+ENTRYPOINT ["dotnet", "CCS.WebApp.dll"]

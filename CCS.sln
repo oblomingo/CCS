@@ -3,15 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CCS.Web", "CCS.Web\CCS.Web.csproj", "{12CDEBE9-8C56-4F56-B0D5-A6C26A455096}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CCS.Repository", "CCS.Repository\CCS.Repository.csproj", "{B3DBD3C5-E213-4AE3-8F41-00EEFF1CF94B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSS.GPIO", "CSS.GPIO\CSS.GPIO.csproj", "{D12343D1-4631-4D26-8341-DB7439CD1DCA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCS.WebApp", "CCS.WebApp\CCS.WebApp.csproj", "{76ED4D91-107E-43CB-A039-818FAE27429F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CCS.WebApp", "CCS.WebApp\CCS.WebApp.csproj", "{76ED4D91-107E-43CB-A039-818FAE27429F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test2", "Test2\Test2.csproj", "{3860E22B-761D-4AA3-BAA5-4F6856B5D197}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{72FF90AE-6AF3-4AC1-B849-9C7D230B235E}"
+	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +20,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{12CDEBE9-8C56-4F56-B0D5-A6C26A455096}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{12CDEBE9-8C56-4F56-B0D5-A6C26A455096}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{12CDEBE9-8C56-4F56-B0D5-A6C26A455096}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{12CDEBE9-8C56-4F56-B0D5-A6C26A455096}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B3DBD3C5-E213-4AE3-8F41-00EEFF1CF94B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B3DBD3C5-E213-4AE3-8F41-00EEFF1CF94B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3DBD3C5-E213-4AE3-8F41-00EEFF1CF94B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -35,10 +32,6 @@ Global
 		{76ED4D91-107E-43CB-A039-818FAE27429F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76ED4D91-107E-43CB-A039-818FAE27429F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76ED4D91-107E-43CB-A039-818FAE27429F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3860E22B-761D-4AA3-BAA5-4F6856B5D197}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3860E22B-761D-4AA3-BAA5-4F6856B5D197}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3860E22B-761D-4AA3-BAA5-4F6856B5D197}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3860E22B-761D-4AA3-BAA5-4F6856B5D197}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

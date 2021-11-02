@@ -12,8 +12,8 @@ namespace CSS.GPIO.Relays
 		{
 			_logger = logger;
 
-			Pi.Gpio[26].PinMode = GpioPinDriveMode.Input;
-			_isOn = Pi.Gpio[26].Read();
+			Pi.Gpio[12].PinMode = GpioPinDriveMode.Input;
+			_isOn = Pi.Gpio[12].Read();
 		}
 
 		public bool IsOn => _isOn;
@@ -25,8 +25,8 @@ namespace CSS.GPIO.Relays
 				return;
 			}
 
-			Pi.Gpio[26].PinMode = GpioPinDriveMode.Output;
-			Pi.Gpio[26].Write(GpioPinValue.High);
+			Pi.Gpio[12].PinMode = GpioPinDriveMode.Output;
+			Pi.Gpio[12].Write(GpioPinValue.High);
 			_isOn = true;
 			_logger.LogInformation($"GpioRelay turned on");
 		}
@@ -35,8 +35,8 @@ namespace CSS.GPIO.Relays
 		{
 			if (IsOn)
 			{
-				Pi.Gpio[26].PinMode = GpioPinDriveMode.Output;
-				Pi.Gpio[26].Write(GpioPinValue.Low);
+				Pi.Gpio[12].PinMode = GpioPinDriveMode.Output;
+				Pi.Gpio[12].Write(GpioPinValue.Low);
 				_isOn = false;
 				_logger.LogInformation($"GpioRelay turned off");
 			}

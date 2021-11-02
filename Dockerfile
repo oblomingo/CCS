@@ -1,25 +1,25 @@
-﻿FROM mcr.microsoft.com/dotnet/sdk:3.1-bullseye-arm32v7 AS builder
+﻿FROM mcr.microsoft.com/dotnet/sdk:5.0 AS builder
 WORKDIR /source
 
-RUN curl -sL https://deb.nodesource.com/setup_10.x |  bash -
+RUN curl -sL https://deb.nodesource.com/setup_14.x |  bash -
 RUN apt-get install -y nodejs
 
 COPY . /source
 
 WORKDIR /source/CCS.Repository
-RUN dotnet restore
+RUN dotnet restore -r linux-arm
 
 WORKDIR /source/CSS.GPIO
-RUN dotnet restore
+RUN dotnet restore -r linux-arm
 
-WORKDIR /source/CCS.Web
-RUN dotnet restore
+WORKDIR /source/CCS.WebApp
+RUN dotnet restore -r linux-arm
 
-WORKDIR /source/CCS.Web
-RUN dotnet publish "./CCS.Web.csproj" --output "../dist" --configuration Release
+WORKDIR /source/CCS.WebApp
+RUN dotnet publish "./CCS.WebApp.csproj" --output "../dist" --configuration Release -r linux-arm --self-contained false --no-restore
 
-FROM mcr.microsoft.com/dotnet/aspnet:3.1-bullseye-slim-arm32v7 as runtime
+FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim-arm32v7 as runtime
 WORKDIR /source
 COPY --from=builder /source/dist .
 EXPOSE 80
-ENTRYPOINT ["dotnet", "CCS.Web.dll"]
+ENTRYPOINT ["dotnet", "CCS.WebApp.dll"]
