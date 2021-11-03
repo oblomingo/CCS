@@ -62,15 +62,18 @@ namespace CSS.TestApp
 
                 var value = controller.Read(relayPinNumber);
                 Console.WriteLine($"Pin value: {value.ToString()}");
+                controller.ClosePin(relayPinNumber);
 
                 Console.WriteLine($"Turning on gpio ...");
                 controller.OpenPin(relayPinNumber, PinMode.Output);
                 controller.Write(relayPinNumber, PinValue.High);
                 Console.WriteLine($"Turned on gpio ...");
+                controller.ClosePin(relayPinNumber);
 
                 controller.OpenPin(relayPinNumber, PinMode.Input);
                 value = controller.Read(relayPinNumber);
                 Console.WriteLine($"Pin value: {value.ToString()}");
+                controller.ClosePin(relayPinNumber);
             }
         }
 }
