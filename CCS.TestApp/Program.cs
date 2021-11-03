@@ -1,5 +1,6 @@
 ﻿using Iot.Device.DHTxx;
 using System;
+using System.Device.Gpio;
 
 namespace CSS.TestApp
 {
@@ -9,14 +10,31 @@ namespace CSS.TestApp
         {
             Console.WriteLine("Hello Test App!");
 
-            TestTemperatureSensor();
+            try
+            {
+                TestTemperatureSensor();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error on testing sensor: {ex}");
+            }
 
+            try
+            {
+                TestGpioInputOutput();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error on testing gpio: {ex}");
+            }
+
+            Console.ReadKey();
         }
 
         private static void TestTemperatureSensor()
         {
             // GPIO Pin
-            using (Dht22 dht = new Dht22(26))
+            using (Dht22 dht = new Dht22(22))
             {
                 var temperature = dht.Temperature;
                 var humidity = dht.Humidity;
@@ -32,5 +50,28 @@ namespace CSS.TestApp
                 }
             }
         }
-    }
+
+        private static void TestGpioInputOutput()
+        {
+            int relayPinNumber = 26;
+            using(var controller = new GpioController())
+            {
+                controller.OpenPin(relayPinNumber, PinMode.Input);
+                var isOpen = controller.IsPinOpen(relayPinNumber);
+                Console.WriteLine($"Is pin open: {isOpen}");
+
+                var value = controller.Read(relayPinNumber);
+                Console.WriteLine($"Pin value: {value.ToString()}");
+
+                Console.WriteLine($"Turning on gpio ...");
+                controller.OpenPin(relayPinNumber, PinMode.Output);
+                controller.Write(relayPinNumber, PinValue.High);
+                Console.WriteLine($"Turned on gpio ...");
+
+                controller.OpenPin(relayPinNumber, PinMode.Input);
+                value = controller.Read(relayPinNumber);
+                Console.WriteLine($"Pin value: {value.ToString()}");
+            }
+        }
+}
 }
